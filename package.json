@@ -1,0 +1,24 @@
+{
+  "name": "l8ids-nodejs",
+  "version": "1.0.0",
+  "description": "Intrusion Detection system for Layer 8",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TylerTheDesytoyer/Layer8IDS-NodeJs.git"
+  },
+  "keywords": [
+    "Intrustion",
+    "Detection",
+    "System"
+  ],
+  "author": "Wilson Rodriguez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TylerTheDesytoyer/Layer8IDS-NodeJs/issues"
+  },
+  "homepage": "https://github.com/TylerTheDesytoyer/Layer8IDS-NodeJs#readme"
+}
