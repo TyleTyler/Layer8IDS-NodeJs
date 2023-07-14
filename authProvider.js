@@ -1,34 +1,31 @@
 import * as msal from "@azure/msal-node";
 import 'dotenv/config';
 
-
-
 const clientConfig = {
   auth: {
     clientId: process.env.APP_ID,
-    authority: "https://login.microsoftonline.com/b48e6967-6899-4f70-b044-744ade464561",
+    authority: `https://login.microsoftonline.com/${process.env.TENANT_ID}`,
     clientSecret: process.env.APP_SECRET,
+  },
+};
+
+export const getAuth = async () => {
+  const clientApp = new msal.ConfidentialClientApplication(clientConfig);
+
+  const tokenRequest = {
+    scopes: ["https://graph.microsoft.com/.default"],
+  };
+
+  try {
+    const authResult = await clientApp.acquireTokenByClientCredential(tokenRequest);
+    console.log(authResult)
+    console.log("Access token acquired successfully:", authResult.accessToken);
+    // You can use the access token for further API calls
+  } catch (error) {
+    console.log("Error acquiring access token:", error);
   }
+
 };
 
-// Create msal application object
-const cca = new msal.ConfidentialClientApplication(clientConfig);
 
-// With client credentials flows permissions need to be granted in the portal by a tenant administrator.
-// The scope is always in the format "<resource>/.default"
-const clientCredentialRequest = {
-  scopes: [
-    "https://graph.microsoft.com/.default"]
-};
-
-export const getAuth = async ()=>{
-    const auth = await cca.acquireTokenByClientCredential(clientCredentialRequest).then((response) => {
-      return response;
-    }).catch((error) => {
-      console.log(JSON.stringify(error));
-    });
-
-    return auth
-}
-
-
+getAuth()
