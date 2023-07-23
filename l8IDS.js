@@ -2,7 +2,6 @@ import { getAuth } from './authProvider.js';
 
 // Get the access token
 const token = await getAuth();
-console.log(token)
 
 // Set the request URL to fetch security events
 const url = 'https://graph.microsoft.com/v1.0/security/alerts';
@@ -19,11 +18,13 @@ fetch(url, { headers })
   .then(response => response.json())
   .then(data => {
     // Extract the security events from the results
-    console.log(data)
     const securityEvents = data.value;
-    console.log(securityEvents)
     // Log the security events in the console
-    console.log(JSON.stringify(securityEvents, null, 2));
+    const ids = []   
+    for (const property of securityEvents){
+      console.log(property.id)
+    }
+
 
     // Provide a visual confirmation of the security events
     if (securityEvents.length > 0) {

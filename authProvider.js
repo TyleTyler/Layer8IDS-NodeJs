@@ -22,6 +22,7 @@ const clientCredentialRequest = {
 
 export const getAuth = async ()=>{
     const auth = await cca.acquireTokenByClientCredential(clientCredentialRequest).then((response) => {
+      console.log(response)
       return response;
     }).catch((error) => {
       console.log(JSON.stringify(error));
@@ -30,8 +31,4 @@ export const getAuth = async ()=>{
     return auth
 }
 
-
-
-
-
-
+getAuth()
